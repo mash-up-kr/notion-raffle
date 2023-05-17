@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { LandingModule } from './landing/landing.module';
+import { DrawLotModule } from './draw-lot/drawlot.module';
 
 @Module({
     imports: [
@@ -15,6 +16,7 @@ import { LandingModule } from './landing/landing.module';
             rootPath: join(__dirname, '..', '..', 'frontend', 'build'),
         }),
         LandingModule,
+        DrawLotModule,
     ],
     controllers: [AppController],
     providers: [AppService],
