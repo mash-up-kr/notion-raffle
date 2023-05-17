@@ -1,0 +1,24 @@
+{
+  "name": "@notion-embeder/util",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "src/index.ts",
+  "type": "module",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mash-up-kr/notion-embeder.git",
+    "directory": "package-util"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}
