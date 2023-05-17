@@ -22,10 +22,13 @@
     "dependencies": {
         "@fastify/static": "^6.10.1",
         "@nestjs/common": "^9.0.0",
+        "@nestjs/config": "^2.3.2",
         "@nestjs/core": "^9.0.0",
+        "@nestjs/mongoose": "^9.2.2",
         "@nestjs/platform-express": "^9.0.0",
         "@nestjs/platform-fastify": "^9.4.1",
         "@nestjs/serve-static": "^3.0.1",
+        "mongoose": "^7.1.1",
         "reflect-metadata": "^0.1.13",
         "rxjs": "^7.2.0",
         "uuid": "^9.0.0"
