@@ -21,5 +21,10 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'warn',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    eqeqeq: 'off',
+    'new-cap': 'off',
+    'n/handle-callback-err': 'off',
   },
 };
