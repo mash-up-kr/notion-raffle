@@ -9,9 +9,6 @@ importers:
       '@fastify/static':
         specifier: ^6.10.1
         version: 6.10.1
-      '@fastify/view':
-        specifier: ^7.4.1
-        version: 7.4.1
       '@nestjs/common':
         specifier: ^9.0.0
         version: 9.0.0(reflect-metadata@0.1.13)(rxjs@7.2.0)
@@ -23,7 +20,7 @@ importers:
         version: 9.0.0(@nestjs/common@9.0.0)(@nestjs/core@9.0.0)
       '@nestjs/platform-fastify':
         specifier: ^9.4.1
-        version: 9.4.1(@fastify/static@6.10.1)(@fastify/view@7.4.1)(@nestjs/common@9.0.0)(@nestjs/core@9.0.0)
+        version: 9.4.1(@fastify/static@6.10.1)(@nestjs/common@9.0.0)(@nestjs/core@9.0.0)
       '@nestjs/serve-static':
         specifier: ^3.0.1
         version: 3.0.1(@fastify/static@6.10.1)(@nestjs/common@9.0.0)(@nestjs/core@9.0.0)
@@ -1827,13 +1824,6 @@ packages:
       readable-stream: 4.4.0
     dev: false
 
-  /@fastify/view@7.4.1:
-    resolution: {integrity: sha512-ahmRmSbNVM8bIoz0BAFnY0jNigom+xbPQ9Q1ZjmNOtGVVT3nYXCxw2OMkTr9iXwrJ4Le3EtWDHlFkZ2fCQ2hJA==}
-    dependencies:
-      fastify-plugin: 4.5.0
-      hashlru: 2.3.0
-    dev: false
-
   /@humanwhocodes/config-array@0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
     engines: {node: '>=10.10.0'}
@@ -2468,7 +2458,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@nestjs/platform-fastify@9.4.1(@fastify/static@6.10.1)(@fastify/view@7.4.1)(@nestjs/common@9.0.0)(@nestjs/core@9.0.0):
+  /@nestjs/platform-fastify@9.4.1(@fastify/static@6.10.1)(@nestjs/common@9.0.0)(@nestjs/core@9.0.0):
     resolution: {integrity: sha512-+E5USIlsRNKSVsyjZ+JZ298gKDUM/SBUKOtGnOeu7McmNRchn8eA4JSzqMQPvxqxQKo38lEfR5PJC8xGoftVZA==}
     peerDependencies:
       '@fastify/static': ^6.0.0
@@ -2485,7 +2475,6 @@ packages:
       '@fastify/formbody': 7.4.0
       '@fastify/middie': 8.3.0
       '@fastify/static': 6.10.1
-      '@fastify/view': 7.4.1
       '@nestjs/common': 9.0.0(reflect-metadata@0.1.13)(rxjs@7.2.0)
       '@nestjs/core': 9.0.0(@nestjs/common@9.0.0)(@nestjs/platform-express@9.0.0)(reflect-metadata@0.1.13)(rxjs@7.2.0)
       fastify: 4.17.0
@@ -6720,10 +6709,6 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
-
-  /hashlru@2.3.0:
-    resolution: {integrity: sha512-0cMsjjIC8I+D3M44pOQdsy0OHXGLVz6Z0beRuufhKa0KfaD2wGwAev6jILzXsd3/vpnNQJmWyZtIILqM1N+n5A==}
-    dev: false
 
   /he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
