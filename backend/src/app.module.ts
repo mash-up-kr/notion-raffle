@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { LandingModule } from './landing/landing.module';
 
 @Module({
     imports: [
@@ -13,6 +14,7 @@ import { join } from 'path';
         ServeStaticModule.forRoot({
             rootPath: join(__dirname, '..', '..', 'frontend', 'build'),
         }),
+        LandingModule,
     ],
     controllers: [AppController],
     providers: [AppService],
