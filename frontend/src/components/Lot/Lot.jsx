@@ -6,14 +6,17 @@ import { useTryLot } from "../../api/mutation";
 
 function App() {
   const [user, setUser] = useState("익명의 누군가");
+  const [result, setResult] = useState(null);
   const { uuid, id } = useParams();
 
   const { data, isSuccess } = useGetLot(uuid, id);
-  const { mutate: tryLot } = useTryLot({ uuid, id, user });
+  const { mutateAsync: tryLot } = useTryLot({ uuid, id, user });
 
   if (!(isSuccess && data)) return null;
-  const handleDraw = () => {
-    tryLot();
+  const handleDraw = async () => {
+    const res = await tryLot();
+    const resultText = res.isLucky ? "당첨" : "꽝";
+    setResult(resultText);
   };
 
   return (
@@ -44,8 +47,7 @@ function App() {
       <button className="button" onClick={handleDraw}>
         제비 뽑기
       </button>
-      <p className="result">추첨 결과: 당첨</p>
-      {/* {result !== "" ? <p className="result">추첨 결과: {result}</p> : null} */}
+      {result && <p className="result">추첨 결과: {result}</p>}
     </div>
   );
 }
