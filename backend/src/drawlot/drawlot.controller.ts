@@ -4,6 +4,7 @@ import {
     FindDrawlotResDto,
     FindDrawlotsResDto,
     TryDrawlotReqDto,
+    TryDrawlotResultDto,
 } from './drawlot.dto';
 import { DrawlotService } from './drawlot.service';
 
@@ -39,8 +40,7 @@ export class DrawlotController {
         @Param('uuid') uuid: string,
         @Param('id') id: string,
         @Body() tryDrawlotReqDto: TryDrawlotReqDto,
-    ): Promise<FindDrawlotResDto> {
-        const drawlot = await this.drawlotService.tryDrawlot(id, tryDrawlotReqDto.user);
-        return FindDrawlotResDto.from(drawlot);
+    ): Promise<TryDrawlotResultDto> {
+        return await this.drawlotService.tryDrawlot(id, tryDrawlotReqDto.user);
     }
 }

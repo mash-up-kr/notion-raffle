@@ -52,3 +52,7 @@ export class CreateDrawlotDto {
 export class TryDrawlotReqDto {
     user: string;
 }
+
+export class TryDrawlotResultDto {
+    isLucky: boolean;
+}
