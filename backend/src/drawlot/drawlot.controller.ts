@@ -15,7 +15,7 @@ export class DrawlotController {
     }
 
     @Get(':uuid/drawlot/:id')
-    getDrawlot(@Param('uid') uid: string, @Param('id') id: string) {
+    async getDrawlot(@Param('uuid') uuid: string, @Param('id') id: string) {
         // TODO: 제비뽑기 하나의 정보 가져오기
     }
 
