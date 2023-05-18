@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import {
     CreateDrawlotReqDto,
     FindDrawlotResDto,
@@ -7,6 +7,7 @@ import {
     TryDrawlotResultDto,
 } from './drawlot.dto';
 import { DrawlotService } from './drawlot.service';
+import { ExposeOption, FLimit, FSort } from '../types/find-options';
 
 @Controller('api')
 export class DrawlotController {
@@ -30,8 +31,13 @@ export class DrawlotController {
     }
 
     @Get(':uuid/drawlot')
-    async get(@Param('uuid') uuid: string): Promise<FindDrawlotsResDto> {
-        const drawlots = await this.drawlotService.findDrawlotsByUuid(uuid);
+    async get(
+        @Param('uuid') uuid: string,
+        @Query('sort') sort: ExposeOption<FSort> = 'dsc',
+        @Query('limit') limit: ExposeOption<FLimit> = 10,
+    ): Promise<FindDrawlotsResDto> {
+        const options = { sort, limit };
+        const drawlots = await this.drawlotService.findDrawlotsByUuid(uuid, options);
         return FindDrawlotsResDto.from(drawlots);
     }
 

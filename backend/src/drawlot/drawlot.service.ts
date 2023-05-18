@@ -5,6 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Drawlot, DrawlotDocument } from './drawlot.schema';
 import { shuffleArray } from '../util/suffle';
 import { Queried } from '../types/mongo';
+import { FLimit, FSort } from '../types/find-options';
 
 @Injectable()
 export class DrawlotService {
@@ -34,8 +35,12 @@ export class DrawlotService {
         return luckIdxs.sort();
     }
 
-    async findDrawlotsByUuid(uuid: string): Promise<Queried<Drawlot>[]> {
-        return await this.drawlotModel.find({ uuid: uuid }).exec();
+    async findDrawlotsByUuid(uuid: string, options: FSort & FLimit): Promise<Queried<Drawlot>[]> {
+        return await this.drawlotModel
+            .find({ uuid: uuid })
+            .limit(options.limit)
+            .sort({ _id: options.sort === 'asc' ? 1 : -1 })
+            .exec();
     }
 
     async findDrawlotByUuid(id: string): Promise<Queried<Drawlot>> {
