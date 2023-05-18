@@ -5,6 +5,9 @@ export type DrawlotDocument = HydratedDocument<Drawlot>;
 @Schema()
 export class Drawlot {
     @Prop()
+    title: string;
+
+    @Prop()
     uuid: string;
 
     @Prop()

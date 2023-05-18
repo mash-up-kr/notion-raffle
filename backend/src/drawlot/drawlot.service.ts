@@ -11,6 +11,7 @@ export class DrawlotService {
     constructor(@InjectModel(Drawlot.name) private readonly drawlotModel: Model<DrawlotDocument>) {}
     async createDrawlot(uuid: string, createDrawlotReqDto: CreateDrawlotReqDto): Promise<string> {
         const createDrawlotDto: CreateDrawlotDto = {
+            title: createDrawlotReqDto.title,
             uuid: uuid,
             maxLotsCnt: createDrawlotReqDto.maxLotsCnt,
             luckCnt: createDrawlotReqDto.luckCnt,
