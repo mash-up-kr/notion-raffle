@@ -5,9 +5,9 @@ class LotService extends APIBase {
     super("");
   }
 
-  create({ luckCnt, maxLotsCnt, uuid }) {
+  create({ luckCnt, maxLotsCnt, uuid, title }) {
     return this.baseHTTP
-      .post(`${uuid}/drawlot`, { luckCnt, maxLotsCnt })
+      .post(`${uuid}/drawlot`, { luckCnt, maxLotsCnt, title })
       .then(APIBase._handleResponse)
       .catch(APIBase._handleError);
   }
@@ -15,6 +15,13 @@ class LotService extends APIBase {
   getList(uuid) {
     return this.baseHTTP
       .get(`${uuid}/drawlot`)
+      .then(APIBase._handleResponse)
+      .catch(APIBase._handleError);
+  }
+
+  get(uuid, id) {
+    return this.baseHTTP
+      .get(`${uuid}/drawlot/${id}`)
       .then(APIBase._handleResponse)
       .catch(APIBase._handleError);
   }

@@ -1,12 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import style from "./Landing.module.scss";
 import { useGetLotList } from "../../api/query/lotQuery";
 
 function Landing() {
-  const uuid = "1234";
+  const { uuid } = useParams();
   const { data, isSuccess } = useGetLotList(uuid);
 
-  if (!(isSuccess && data.drawlots)) return null;
+  if (!(isSuccess && data.list)) return null;
 
   return (
     <div className={style.Landing}>
@@ -17,11 +17,11 @@ function Landing() {
       <div>
         <h3>만든 제비 뽑기 목록</h3>
         <div>
-          {data.drawlots.map((lot) => {
+          {data.list.map((lot) => {
             return (
               <div>
-                <NavLink to={`/embed/${uuid}/create-lot/${lot.id}`}>
-                  제비 뽑기 - {lot.id}
+                <NavLink to={`/embed/${uuid}/lot/${lot.id}`}>
+                  제비 뽑기 {lot.title}
                 </NavLink>
               </div>
             );

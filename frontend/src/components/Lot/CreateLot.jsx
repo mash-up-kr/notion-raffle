@@ -8,13 +8,13 @@ function CreateLot() {
   const [maxLotsCnt, setMaxLotsCnt] = useState(10);
   const [luckCnt, setLuckCnt] = useState(2);
   const { uuid } = useParams();
-  const { mutate } = useCreateLot({ uuid, maxLotsCnt, luckCnt });
+  const { mutate } = useCreateLot({ uuid, maxLotsCnt, luckCnt, title });
 
   const navigate = useNavigate();
-  const createLot = () => {
+  const createLot = React.useCallback(() => {
     mutate();
     navigate(`/embed/${uuid}`);
-  };
+  }, []);
 
   return (
     <div className="container">

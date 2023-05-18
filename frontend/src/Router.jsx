@@ -13,7 +13,7 @@ function Router() {
       <Route path="/" element={<Landing />} />
       <Route path="/embed/:uuid" element={<Landing />} />x
       <Route path="/embed/:uuid/create-lot" element={<CreateLot />} />
-      <Route path="/lot" element={<Lot />} />
+      <Route path="/embed/:uuid/lot/:id" element={<Lot />} />
       <Route path="/vote" element={<Vote />} />
       <Route path="/ladder" element={<Ladder />} />
     </Routes>
