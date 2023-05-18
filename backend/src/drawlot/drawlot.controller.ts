@@ -1,5 +1,10 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { CreateDrawlotReqDto, FindDrawlotRes, FindDrawlotsRes } from './drawlot.dto';
+import {
+    CreateDrawlotReqDto,
+    FindDrawlotRes,
+    FindDrawlotsRes,
+    TryDrawlotReqDto,
+} from './drawlot.dto';
 import { DrawlotService } from './drawlot.service';
 
 @Controller('api')
@@ -29,8 +34,13 @@ export class DrawlotController {
         return FindDrawlotsRes.from(drawlots);
     }
 
-    @Post(':uuid/drawlot/:id/draw')
-    drawDrawlot(@Param('uid') uid: string, @Param('id') id: string) {
-        // TODO: 제비뽑기 하나 뽑기
+    @Post(':uuid/drawlot/:id/try')
+    async tryDrawlot(
+        @Param('uuid') uuid: string,
+        @Param('id') id: string,
+        @Body() tryDrawlotReqDto: TryDrawlotReqDto,
+    ): Promise<FindDrawlotRes> {
+        const drawlot = await this.drawlotService.tryDrawlot(id, tryDrawlotReqDto.user);
+        return FindDrawlotRes.from(drawlot);
     }
 }

@@ -44,3 +44,7 @@ export class CreateDrawlotDto {
     luckIdxs: number[];
     triedUsers: string[];
 }
+
+export class TryDrawlotReqDto {
+    user: string;
+}

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDrawlotDto, CreateDrawlotReqDto } from './drawlot.dto';
-import { Model, Types } from 'mongoose';
+import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Drawlot, DrawlotDocument } from './drawlot.schema';
 import { shuffleArray } from '../util/suffle';
@@ -39,5 +39,11 @@ export class DrawlotService {
 
     async findDrawlotByUuid(id: string): Promise<Queried<Drawlot>> {
         return await this.drawlotModel.findById(id).exec();
+    }
+
+    async tryDrawlot(id: string, user: string): Promise<Queried<Drawlot>> {
+        return this.drawlotModel.findByIdAndUpdate(id, {
+            $push: { triedUsers: user },
+        });
     }
 }
