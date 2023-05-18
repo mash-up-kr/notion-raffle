@@ -43,8 +43,25 @@ export class DrawlotService {
     }
 
     async tryDrawlot(id: string, user: string): Promise<Queried<Drawlot>> {
-        return this.drawlotModel.findByIdAndUpdate(id, {
-            $push: { triedUsers: user },
-        });
+        const session = await this.drawlotModel.startSession();
+        await session.startTransaction();
+        try {
+            const drawlot = await this.drawlotModel
+                .findByIdAndUpdate(
+                    id,
+                    {
+                        $push: { triedUsers: user },
+                    },
+                    { returnDocument: 'after' },
+                )
+                .session(session);
+            if (drawlot.triedUsers.length > drawlot.maxLotsCnt) throw Error();
+            await session.commitTransaction();
+        } catch (e) {
+            await session.abortTransaction();
+        } finally {
+            await session.endSession();
+        }
+        return await this.drawlotModel.findById(id).exec();
     }
 }
