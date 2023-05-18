@@ -4,6 +4,7 @@ import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Drawlot, DrawlotDocument } from './drawlot.schema';
 import { shuffleArray } from '../util/suffle';
+import { Queried } from '../types/mongo';
 
 @Injectable()
 export class DrawlotService {
@@ -32,7 +33,11 @@ export class DrawlotService {
         return luckIdxs.sort();
     }
 
-    async findDrawlotsByUuid(uuid: string): Promise<(Drawlot & { _id: Types.ObjectId })[]> {
+    async findDrawlotsByUuid(uuid: string): Promise<Queried<Drawlot>[]> {
         return await this.drawlotModel.find({ uuid: uuid }).exec();
+    }
+
+    async findDrawlotByUuid(id: string): Promise<Queried<Drawlot>> {
+        return await this.drawlotModel.findById(id).exec();
     }
 }
