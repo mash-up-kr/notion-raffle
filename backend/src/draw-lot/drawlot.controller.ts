@@ -1,13 +1,17 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { CreateDrawlotReqDto } from './drawlot.dto';
+import { DrawlotService } from './drawlot.service';
 
 @Controller('api')
-export class DrawLotController {
-    // constructor() {}
+export class DrawlotController {
+    constructor(readonly drawlotService: DrawlotService) {}
 
     @Post(':uuid/drawlot')
-    createDrawlot(@Param('uid') uid: string, @Body() createDrawlotDto: any) {
-        // TODO: createDrawlotDto 만들기
-        // TODO: 제비뽑기 생성
+    async createDrawlot(
+        @Param('uuid') uuid: string,
+        @Body() createDrawlotReqDto: CreateDrawlotReqDto,
+    ) {
+        return await this.drawlotService.createDrawlot(uuid, createDrawlotReqDto);
     }
 
     @Get(':uuid/drawlot/:id')
