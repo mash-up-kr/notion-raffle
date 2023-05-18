@@ -8,19 +8,19 @@ export class CreateDrawlotReqDto {
     maxLotsCnt: number;
 }
 
-export class FindDrawlotsRes implements ListResponse<FindDrawlotRes> {
-    list: FindDrawlotRes[];
+export class FindDrawlotsResDto implements ListResponse<FindDrawlotResDto> {
+    list: FindDrawlotResDto[];
     count: number;
 
-    static from(drawlots: Queried<Drawlot>[]): FindDrawlotsRes {
-        return Object.assign(new FindDrawlotRes(), {
-            list: drawlots.map((drawlot) => FindDrawlotRes.from(drawlot)),
+    static from(drawlots: Queried<Drawlot>[]): FindDrawlotsResDto {
+        return Object.assign(new FindDrawlotResDto(), {
+            list: drawlots.map((drawlot) => FindDrawlotResDto.from(drawlot)),
             count: drawlots.length,
         });
     }
 }
 
-export class FindDrawlotRes {
+export class FindDrawlotResDto {
     id: string;
     title: string;
     maxLotsCnt: number;
@@ -28,8 +28,8 @@ export class FindDrawlotRes {
     luckIdxs: number[];
     triedUsers: string[];
 
-    static from(drawlot: Queried<Drawlot>): FindDrawlotRes {
-        return Object.assign(new FindDrawlotRes(), {
+    static from(drawlot: Queried<Drawlot>): FindDrawlotResDto {
+        return Object.assign(new FindDrawlotResDto(), {
             id: String(drawlot._id),
             title: drawlot.title,
             maxLotsCnt: drawlot.maxLotsCnt,
