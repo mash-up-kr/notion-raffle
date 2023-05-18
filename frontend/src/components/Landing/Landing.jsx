@@ -21,7 +21,7 @@ function Landing() {
             return (
               <div>
                 <NavLink to={`/embed/${uuid}/lot/${lot.id}`}>
-                  제비 뽑기 {lot.title}
+                  {lot.title}
                 </NavLink>
               </div>
             );

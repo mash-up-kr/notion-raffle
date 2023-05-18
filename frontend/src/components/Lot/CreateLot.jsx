@@ -13,7 +13,6 @@ function CreateLot() {
   const navigate = useNavigate();
   const createLot = React.useCallback(() => {
     mutate();
-    navigate(`/embed/${uuid}`);
   }, []);
 
   return (
