@@ -11,7 +11,7 @@ export class LandingController {
         return 'some react build file';
     }
 
-    @Get('uid')
+    @Get('uuid')
     getUid(): string {
         return getUUId();
     }
