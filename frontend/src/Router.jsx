@@ -11,8 +11,8 @@ function Router() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
-      <Route path="/embed" element={<Landing />} />x
-      <Route path="/create-lot" element={<CreateLot />} />
+      <Route path="/embed/:uuid" element={<Landing />} />x
+      <Route path="/embed/:uuid/create-lot" element={<CreateLot />} />
       <Route path="/lot" element={<Lot />} />
       <Route path="/vote" element={<Vote />} />
       <Route path="/ladder" element={<Ladder />} />

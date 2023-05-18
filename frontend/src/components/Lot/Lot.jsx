@@ -1,11 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./Lot.css";
 
 function App() {
   const [result, setResult] = useState("");
-  const [totalPrizes, setTotalPrizes] = useState(10);
-  const [numWinningPrizes, setNumWinningPrizes] = useState(2);
-  const [results, setResults] = useState([]);
 
   const handleDraw = () => {
     const items = ["당첨", "꽝", "꽝", "꽝"];
