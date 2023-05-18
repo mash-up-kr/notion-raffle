@@ -6,11 +6,12 @@ import Lot from "./components/Lot";
 import CreateLot from "./components/Lot/CreateLot";
 
 import { Routes, Route } from "react-router-dom";
+import CreateUrl from "./components/CreateUrl";
 
 function Router() {
   return (
     <Routes>
-      <Route path="/" element={<Landing />} />
+      <Route path="/" element={<CreateUrl />} />
       <Route path="/embed/:uuid" element={<Landing />} />x
       <Route path="/embed/:uuid/create-lot" element={<CreateLot />} />
       <Route path="/embed/:uuid/lot/:id" element={<Lot />} />
