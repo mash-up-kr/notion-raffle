@@ -45,13 +45,13 @@ function CreateLot() {
       </div>
       <div className="w-1/3 mr-2">
         <label htmlFor="luckCnt" className="block font-bold mb-2">
-          꽝 개수
+          당첨 개수
         </label>
         <input
           type="number"
           id="luckCnt"
-          value={maxLotsCnt - luckCnt}
-          onChange={(e) => setLuckCnt(maxLotsCnt - parseInt(e.target.value))}
+          value={luckCnt}
+          onChange={(e) => setLuckCnt(parseInt(e.target.value))}
           className="w-full py-2 px-3 border border-gray-400 rounded shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-400"
         />
       </div>
