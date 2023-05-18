@@ -44,7 +44,7 @@ function App() {
           className="w-full py-2 px-3 border border-gray-400 rounded shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-400"
         />
       </div>
-      <button className="button" onClick={handleDraw}>
+      <button className="btn" onClick={handleDraw}>
         제비 뽑기
       </button>
       {result && <p className="result">추첨 결과: {result}</p>}
