@@ -25,6 +25,13 @@ class LotService extends APIBase {
       .then(APIBase._handleResponse)
       .catch(APIBase._handleError);
   }
+
+  try({ uuid, id, user }) {
+    return this.baseHTTP
+      .post(`${uuid}/drawlot/${id}/try`, { user })
+      .then(APIBase._handleResponse)
+      .catch(APIBase._handleError);
+  }
 }
 
 const lotService = new LotService();
