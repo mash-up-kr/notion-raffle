@@ -2,13 +2,18 @@ import React from "react";
 import Landing from "./components/Landing";
 import Vote from "./components/Vote";
 import Ladder from "./components/Ladder";
+import Lot from "./components/Lot";
+import CreateLot from "./components/Lot/CreateLot";
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 
 function Router() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/embed/:uuid" element={<Landing />} />x
+      <Route path="/embed/:uuid/create-lot" element={<CreateLot />} />
+      <Route path="/embed/:uuid/lot/:id" element={<Lot />} />
       <Route path="/vote" element={<Vote />} />
       <Route path="/ladder" element={<Ladder />} />
     </Routes>
