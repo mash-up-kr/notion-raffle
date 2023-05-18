@@ -20,27 +20,13 @@ export class DrawlotController {
         @Param('id') id: string,
     ): Promise<FindDrawlotRes> {
         const drawlot = await this.drawlotService.findDrawlotByUuid(id);
-        return {
-            id: String(drawlot._id),
-            maxLotsCnt: drawlot.maxLotsCnt,
-            luckCnt: drawlot.luckCnt,
-            luckIdxs: drawlot.luckIdxs,
-            triedUsers: drawlot.triedUsers,
-        };
+        return FindDrawlotRes.from(drawlot);
     }
 
     @Get(':uuid/drawlot')
-    async get(@Param('uuid') uuid: string, @Param('id') id: string): Promise<FindDrawlotsRes> {
+    async get(@Param('uuid') uuid: string): Promise<FindDrawlotsRes> {
         const drawlots = await this.drawlotService.findDrawlotsByUuid(uuid);
-        return {
-            drawlots: drawlots.map((drawlot) => ({
-                id: String(drawlot._id),
-                maxLotsCnt: drawlot.maxLotsCnt,
-                luckCnt: drawlot.luckCnt,
-                luckIdxs: drawlot.luckIdxs,
-                triedUsers: drawlot.triedUsers,
-            })),
-        };
+        return FindDrawlotsRes.from(drawlots);
     }
 
     @Post(':uuid/drawlot/:id/draw')
