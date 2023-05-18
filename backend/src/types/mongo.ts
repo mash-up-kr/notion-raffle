@@ -1,3 +1,3 @@
-import { Types } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
-export type Queried<T> = T & { _id: Types.ObjectId };
+export type Queried<T> = T & Pick<Document, '_id'>;
