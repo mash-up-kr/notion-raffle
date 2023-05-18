@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { CreateDrawlotReqDto } from './drawlot.dto';
+import { CreateDrawlotReqDto, FindDrawlotsRes } from './drawlot.dto';
 import { DrawlotService } from './drawlot.service';
 
 @Controller('api')
@@ -20,8 +20,17 @@ export class DrawlotController {
     }
 
     @Get(':uuid/drawlot')
-    get(@Param('uid') uid: string, @Param('id') id: string) {
-        // TODO: 제비뽑기 리스트 가져오기
+    async get(@Param('uuid') uuid: string, @Param('id') id: string): Promise<FindDrawlotsRes> {
+        const drawlots = await this.drawlotService.findDrawlotsByUuid(uuid);
+        return {
+            drawlots: drawlots.map((drawlot) => ({
+                id: String(drawlot._id),
+                maxLotsCnt: drawlot.maxLotsCnt,
+                luckCnt: drawlot.luckCnt,
+                luckIdxs: drawlot.luckIdxs,
+                triedUsers: drawlot.triedUsers,
+            })),
+        };
     }
 
     @Post(':uuid/drawlot/:id/draw')

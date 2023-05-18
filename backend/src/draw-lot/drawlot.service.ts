@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDrawlotDto, CreateDrawlotReqDto } from './drawlot.dto';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Drawlot, DrawlotDocument } from './drawlot.schema';
 import { shuffleArray } from '../util/suffle';
@@ -24,11 +24,15 @@ export class DrawlotService {
         return drawLot.id;
     }
 
-    private makeLuckIdxs(maxLotCnt, luckCnt) {
+    private makeLuckIdxs(maxLotCnt, luckCnt): number[] {
         const candidates = Array(maxLotCnt)
             .fill(undefined)
             .map((_, idx) => idx);
         const luckIdxs = shuffleArray(candidates).slice(0, luckCnt);
         return luckIdxs.sort();
+    }
+
+    async findDrawlotsByUuid(uuid: string): Promise<(Drawlot & { _id: Types.ObjectId })[]> {
+        return await this.drawlotModel.find({ uuid: uuid }).exec();
     }
 }
