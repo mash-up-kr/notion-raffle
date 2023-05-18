@@ -1,43 +1,47 @@
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import style from "./Landing.module.scss";
 import { useGetLotList } from "../../api/query/lotQuery";
 
 function Landing() {
   const { uuid } = useParams();
   const { data, isSuccess } = useGetLotList(uuid);
+  const navigate = useNavigate();
 
   if (!(isSuccess && data.list)) return null;
 
   return (
     <div className={style.Landing}>
-      <h1>노션 임베딩 만들기</h1>
-      <div>
-        <NavLink to={`/embed/${uuid}/create-lot`}>제비 뽑기</NavLink>
+      <div className="flex flex-col gap-2">
+        {data.list.map((lot) => {
+          return (
+            <button
+              className="btn btn-info hover:bg-sky-500 text-base p-2 rounded-lg flex items-center justify-center "
+              onClick={() => navigate(`/embed/${uuid}/lot/${lot.id}`)}
+            >
+              {lot.title}
+            </button>
+          );
+        })}
       </div>
-      <div>
-        <h3>만든 제비 뽑기 목록</h3>
-        <div>
-          {data.list.map((lot) => {
-            return (
-              <div>
-                <NavLink to={`/embed/${uuid}/lot/${lot.id}`}>
-                  {lot.title}
-                </NavLink>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      {/* <div>
-          <a href="/ladder" tag="a">
-            사다리 타기
-          </a>
-        </div>
-        <div>
-          <a href="/vote" tag="a">
-            투표하기
-          </a>
-        </div> */}
+      <button
+        className="btn btn-circle absolute bottom-4 right-4"
+        onClick={() => navigate(`/embed/${uuid}/create-lot`)}
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 6v12m6-6H6"
+          ></path>
+        </svg>
+      </button>
     </div>
   );
 }

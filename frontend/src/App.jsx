@@ -9,7 +9,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Router />
+        <div className="mockup-window border bg-base-300">
+          <div className="flex justify-center px-4 py-8 bg-base-200">
+            <Router />
+          </div>
+        </div>
       </BrowserRouter>
     </QueryClientProvider>
   );
