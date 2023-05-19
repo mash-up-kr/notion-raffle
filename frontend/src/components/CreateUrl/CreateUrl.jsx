@@ -35,7 +35,12 @@ function CreateUrl() {
 
   return (
     <div>
-      <div className="hero min-h-screen bg-base-200">
+      <div
+        className="hero bg-base-200"
+        style={{
+          minHeight: `calc(100vh - 11rem)`,
+        }}
+      >
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="text-5xl font-bold">노션 임베드</h1>
