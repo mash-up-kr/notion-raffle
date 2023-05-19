@@ -3,33 +3,25 @@ import {
   ArrowPathIcon,
   ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline";
+import { useGetEmbedUrl } from "../../api/query/embed";
 
 function Landing() {
-  const [url, setUrl] = useState("");
+  let { data: url, isSuccess, refetch } = useGetEmbedUrl();
+  if (!isSuccess) return null;
 
-  const handleClick = () => {
-    fetch("http://localhost:3000/uuid") // 엔드포인트 URL을 입력하세요
-      .then((response) => response.text())
-      .then((data) => {
-        setUrl(`https://notion-raffle-embeded/embed/${data}`);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+  const handleClick = async () => {
+    const { data } = await refetch();
+    url = data;
   };
-
-  useEffect(() => {
-    handleClick();
-  }, []);
 
   const handleCopy = () => {
     navigator.clipboard
       .writeText(url)
       .then(() => {
-        alert("Text copied to clipboard");
+        alert("주소가 복사되었습니다. 노션에서 embed해보세요!");
       })
       .catch((err) => {
-        console.error("Error copying text:", err);
+        console.error("주소 복사에 문제가 발생했습니다:", err);
       });
   };
 
@@ -54,7 +46,7 @@ function Landing() {
               style={{ height: "fit-content", minHeight: "3rem" }}
             >
               <span className="flex-grow">
-                {url !== "" ? url : "버튼을 눌러주세요"}
+                {url !== "" ? url : "주소를 가져오지 못했습니다."}
               </span>
               <button
                 className="btn btn-square rounded-2xl"
