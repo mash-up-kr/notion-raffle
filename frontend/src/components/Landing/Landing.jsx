@@ -14,12 +14,20 @@ function Landing() {
       <div className="flex flex-col gap-2">
         {data.list.map((lot) => {
           return (
-            <button
-              className="btn btn-info hover:bg-sky-500 text-base p-2 rounded-lg flex items-center justify-center "
-              onClick={() => navigate(`/embed/${uuid}/lot/${lot.id}`)}
-            >
-              {lot.title}
-            </button>
+            <div className="relative">
+              <progress
+                className=" progress progress-warning btn btn-info hover:bg-sky-500 text-base p-2 rounded-lg flex items-center justify-center "
+                onClick={() => navigate(`/embed/${uuid}/lot/${lot.id}`)}
+                value={lot.triedUsers.length}
+                max={lot.maxLotsCnt}
+              ></progress>
+              <div
+                className="absolute left-1/2 top-1/2 text-base subpixel-antialiased font-bold"
+                style={{ transform: "translate(-50%, -50%)" }}
+              >
+                {lot.title}
+              </div>
+            </div>
           );
         })}
       </div>
