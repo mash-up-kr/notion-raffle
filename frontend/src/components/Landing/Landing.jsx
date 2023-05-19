@@ -1,55 +1,77 @@
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import style from "./Landing.module.scss";
-import { useGetLotList } from "../../api/query/lotQuery";
+import React, { useEffect, useState } from "react";
+import {
+  ArrowPathIcon,
+  ClipboardDocumentListIcon,
+} from "@heroicons/react/24/outline";
 
 function Landing() {
-  const { uuid } = useParams();
-  const { data, isSuccess } = useGetLotList(uuid);
-  const navigate = useNavigate();
+  const [url, setUrl] = useState("");
 
-  if (!(isSuccess && data.list)) return null;
+  const handleClick = () => {
+    fetch("http://localhost:3000/uuid") // 엔드포인트 URL을 입력하세요
+      .then((response) => response.text())
+      .then((data) => {
+        setUrl(`https://notion-raffle-embeded/embed/${data}`);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  useEffect(() => {
+    handleClick();
+  }, []);
+
+  const handleCopy = () => {
+    navigator.clipboard
+      .writeText(url)
+      .then(() => {
+        alert("Text copied to clipboard");
+      })
+      .catch((err) => {
+        console.error("Error copying text:", err);
+      });
+  };
 
   return (
-    <div className={style.Landing}>
-      <div className="flex flex-col gap-2">
-        {data.list.map((lot) => {
-          return (
-            <div className="relative">
-              <progress
-                className=" progress progress-warning btn btn-info hover:bg-sky-500 text-base p-2 rounded-lg flex items-center justify-center "
-                onClick={() => navigate(`/embed/${uuid}/lot/${lot.id}`)}
-                value={lot.triedUsers.length}
-                max={lot.maxLotsCnt}
-              ></progress>
-              <div
-                className="absolute left-1/2 top-1/2 text-base subpixel-antialiased font-bold"
-                style={{ transform: "translate(-50%, -50%)" }}
-              >
-                {lot.title}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <button
-        className="btn btn-circle absolute bottom-4 right-4"
-        onClick={() => navigate(`/embed/${uuid}/create-lot`)}
+    <div>
+      <div
+        className="hero bg-base-200"
+        style={{
+          minHeight: `calc(100vh - 11rem)`,
+        }}
       >
-        <svg
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 6v12m6-6H6"
-          ></path>
-        </svg>
-      </button>
+        <div className="hero-content text-center">
+          <div className="max-w-md">
+            <h1 className="text-5xl font-bold">노션 임베드</h1>
+            <p className="py-6">
+              아래 버튼을 눌러 임베드 URL을 생성해 보세요!! <br />
+              <br />
+              복사하려면 URL을 클릭해주세요!!
+            </p>
+            <div
+              className="input input-bordered flex items-center"
+              style={{ height: "fit-content", minHeight: "3rem" }}
+            >
+              <span className="flex-grow">
+                {url !== "" ? url : "버튼을 눌러주세요"}
+              </span>
+              <button
+                className="btn btn-square rounded-2xl"
+                onClick={() => handleClick()}
+              >
+                <ArrowPathIcon className="h-6 w-6 text-gray-1000" />
+              </button>
+              <button
+                className="btn btn-square rounded-2xl"
+                onClick={handleCopy}
+              >
+                <ClipboardDocumentListIcon className="h-6 w-6 text-gray-1000" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
