@@ -20,22 +20,17 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <h1>제비 뽑기 - {data.title}</h1>
-      <div className="w-1/3 mr-2">
-        <label htmlFor="totalPrizes" className="block font-bold mb-2">
+    <div className="container items-center">
+      <div className="text-2xl font-bold my-3">{data.title}</div>
+      <div className="">
+        <div className="block font-bold mb-2">
           제비 개수 : {data.maxLotsCnt}
-        </label>
+        </div>
       </div>
-      <div className="w-1/3 mr-2">
-        <label htmlFor="numWinningPrizes" className="block font-bold mb-2">
-          당첨 개수 : {data.luckCnt}
-        </label>
+      <div className="">
+        <div className="block font-bold mb-2">당첨 개수 : {data.luckCnt}</div>
       </div>
-      <div>
-        <label htmlFor="maxLotsCnt" className="block font-bold mb-2">
-          내 이름
-        </label>
+      <div className="flex">
         <input
           type="string"
           id="user"
@@ -44,7 +39,7 @@ function App() {
           className="w-full py-2 px-3 border border-gray-400 rounded shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-400"
         />
       </div>
-      <button className="btn" onClick={handleDraw}>
+      <button className="btn my-3" onClick={handleDraw}>
         제비 뽑기
       </button>
       {result && <p className="result">추첨 결과: {result}</p>}
