@@ -14,15 +14,9 @@ function Landing() {
     url = data;
   };
 
-  const handleCopy = () => {
-    navigator.clipboard
-      .writeText(url)
-      .then(() => {
-        alert("주소가 복사되었습니다. 노션에서 embed해보세요!");
-      })
-      .catch((err) => {
-        console.error("주소 복사에 문제가 발생했습니다:", err);
-      });
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(url);
+    alert("주소가 복사되었습니다. 노션에서 embed해보세요!");
   };
 
   return (
@@ -50,7 +44,7 @@ function Landing() {
               </span>
               <button
                 className="btn btn-square rounded-2xl"
-                onClick={() => handleClick()}
+                onClick={handleClick}
               >
                 <ArrowPathIcon className="h-6 w-6 text-gray-1000" />
               </button>
