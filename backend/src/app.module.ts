@@ -11,7 +11,7 @@ import { DrawlotModule } from './drawlot/drawlot.module';
 @Module({
     imports: [
         ConfigModule.forRoot(),
-        MongooseModule.forRoot(process.env.MONGO_URL),
+        MongooseModule.forRoot(`${process.env.MONGO_URL}`),
         // ServeStaticModule.forRoot({
         //     rootPath: join(__dirname, '..', '..', 'frontend', 'build'),
         // }),
