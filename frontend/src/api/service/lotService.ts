@@ -1,3 +1,4 @@
+import { CreateLotDto, TryLot } from "../../types/lot";
 import APIBase from "./core";
 
 class LotService extends APIBase {
@@ -5,30 +6,34 @@ class LotService extends APIBase {
     super("");
   }
 
-  create({ luckCnt, maxLotsCnt, uuid, title }) {
+  create(data: CreateLotDto) {
     return this.baseHTTP
-      .post(`${uuid}/drawlot`, { luckCnt, maxLotsCnt, title })
+      .post(`${data.uuid}/drawlot`, {
+        luckCnt: data.luckCnt,
+        maxLotsCnt: data.maxLotsCnt,
+        title: data.title,
+      })
       .then(APIBase._handleResponse)
       .catch(APIBase._handleError);
   }
 
-  getList(uuid) {
+  getList(uuid: string) {
     return this.baseHTTP
       .get(`${uuid}/drawlot`)
       .then(APIBase._handleResponse)
       .catch(APIBase._handleError);
   }
 
-  get(uuid, id) {
+  get(uuid: string, id: string) {
     return this.baseHTTP
       .get(`${uuid}/drawlot/${id}`)
       .then(APIBase._handleResponse)
       .catch(APIBase._handleError);
   }
 
-  try({ uuid, id, user }) {
+  try(data: TryLot) {
     return this.baseHTTP
-      .post(`${uuid}/drawlot/${id}/try`, { user })
+      .post(`${data.uuid}/drawlot/${data.id}/try`, { user: data.user })
       .then(APIBase._handleResponse)
       .catch(APIBase._handleError);
   }

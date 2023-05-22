@@ -1,3 +1,5 @@
+import React from "react";
+
 export function Navbar() {
   return (
     <div className="navbar bg-base-100 drop-shadow-md">

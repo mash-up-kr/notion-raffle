@@ -1,7 +1,17 @@
+import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetLotList } from "../../api/query/lotQuery";
 
-function Embed() {
+interface Lot {
+  id: string;
+  title: string;
+  maxLotsCnt: number;
+  luckCnt: number;
+  luckIdxs: number[];
+  triedUsers: string[];
+}
+
+export function Embed() {
   const { uuid } = useParams();
   const { data, isSuccess } = useGetLotList(uuid);
   const navigate = useNavigate();
@@ -11,7 +21,7 @@ function Embed() {
   return (
     <div>
       <div className="flex flex-col gap-2">
-        {data.list.map((lot) => {
+        {data.list.map((lot: Lot) => {
           return (
             <div className="relative">
               <progress
@@ -52,5 +62,3 @@ function Embed() {
     </div>
   );
 }
-
-export default Embed;

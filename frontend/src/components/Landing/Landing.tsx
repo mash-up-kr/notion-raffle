@@ -5,7 +5,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useGetEmbedUrl } from "../../api/query/embed";
 
-function Landing() {
+export function Landing() {
   let { data: url, isSuccess, refetch } = useGetEmbedUrl();
   if (!isSuccess) return null;
 
