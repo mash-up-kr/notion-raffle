@@ -3,12 +3,18 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useCreateLot } from "../../api/mutation";
 import "./Lot.css";
 
-function CreateLot() {
+export function CreateLot() {
   const [title, setTitle] = useState("신나는 제비뽑기");
   const [maxLotsCnt, setMaxLotsCnt] = useState(10);
   const [luckCnt, setLuckCnt] = useState(2);
   const { uuid } = useParams();
-  const { mutate } = useCreateLot({ uuid, maxLotsCnt, luckCnt, title });
+
+  const { mutate } = useCreateLot({
+    uuid: uuid ?? "",
+    maxLotsCnt,
+    luckCnt,
+    title,
+  });
 
   const navigate = useNavigate();
   const createLot = React.useCallback(() => {
@@ -58,5 +64,3 @@ function CreateLot() {
     </div>
   );
 }
-
-export default CreateLot;

@@ -10,7 +10,7 @@ class APIBase {
   constructor(url = "") {
     this.baseHTTP = axios.create({
       baseURL: `${
-        process.env.SERVER_BASE_URL ?? "http://localhost:3000/api"
+        import.meta.env.SERVER_BASE_URL ?? "http://localhost:3000/api"
       }/${url}`,
       timeout: 500000,
       headers: {
@@ -19,18 +19,12 @@ class APIBase {
     });
   }
 
-  static _handleResponse(response) {
+  static _handleResponse(response: any) {
     return response.data;
   }
 
-  static _handleError(error) {
-    if (axios.isAxiosError(error)) {
-      // Access to config, request, and response
-      throw new Error(error);
-    } else {
-      // Just a stock error
-      throw new Error(error);
-    }
+  static _handleError(error: any) {
+    throw new Error(error);
   }
 }
 

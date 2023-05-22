@@ -4,13 +4,13 @@ import { useGetLot } from "../../api/query/lotQuery";
 import { useParams } from "react-router-dom";
 import { useTryLot } from "../../api/mutation";
 
-function App() {
+export function Lot() {
   const [user, setUser] = useState("익명의 누군가");
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState("");
   const { uuid, id } = useParams();
 
   const { data, isSuccess } = useGetLot(uuid, id);
-  const { mutateAsync: tryLot } = useTryLot({ uuid, id, user });
+  const { mutateAsync: tryLot } = useTryLot(uuid, id, user);
 
   if (!(isSuccess && data)) return null;
   const handleDraw = async () => {
@@ -46,5 +46,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
