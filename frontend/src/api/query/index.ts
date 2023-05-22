@@ -1,1 +1,1 @@
-export * from "./lotQuery";
+export * from './lotQuery';

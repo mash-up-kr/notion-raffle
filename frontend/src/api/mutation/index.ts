@@ -1,1 +1,1 @@
-export * from "./lotMutation";
+export * from './lotMutation';
