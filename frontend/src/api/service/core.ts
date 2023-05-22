@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 /**
  * APIBase를 상속받는 Class는 super의 인자를 통해 baseURL을 추가한다.
@@ -7,14 +7,14 @@ import axios from "axios";
 class APIBase {
   baseHTTP;
 
-  constructor(url = "") {
+  constructor(url = '') {
     this.baseHTTP = axios.create({
       baseURL: `${
-        import.meta.env.SERVER_BASE_URL ?? "http://localhost:3000/api"
+        import.meta.env.VITE_SERVER_BASE_URL ?? 'http://localhost:3000/api'
       }/${url}`,
       timeout: 500000,
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
   }
