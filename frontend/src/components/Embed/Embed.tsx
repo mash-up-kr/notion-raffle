@@ -22,7 +22,7 @@ export function Embed() {
       <div className='flex flex-col gap-2'>
         {data.list.map((lot: Lot) => {
           return (
-            <div className='relative'>
+            <div className='relative' key={lot.id}>
               <progress
                 className=' progress progress-warning btn btn-info hover:bg-sky-500 text-base p-2 rounded-lg flex items-center justify-center '
                 onClick={() => navigate(`/embed/${uuid}/lot/${lot.id}`)}
@@ -46,14 +46,14 @@ export function Embed() {
         <svg
           fill='none'
           stroke='currentColor'
-          stroke-width='1.5'
+          strokeWidth='1.5'
           viewBox='0 0 24 24'
           xmlns='http://www.w3.org/2000/svg'
           aria-hidden='true'
         >
           <path
-            stroke-linecap='round'
-            stroke-linejoin='round'
+            strokeLinecap='round'
+            strokeLinejoin='round'
             d='M12 6v12m6-6H6'
           ></path>
         </svg>

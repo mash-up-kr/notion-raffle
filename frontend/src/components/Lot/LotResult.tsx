@@ -16,16 +16,24 @@ export function LotResult() {
     <div className='container'>
       <div className='text-2xl font-bold mb-2'>{data.title}</div>
       {data.triedUsers.map((user: string, i: number) =>
-        data.luckIdxs.includes(i) ? 당첨(user) : 꽝(user),
+        data.luckIdxs.includes(i) ? 당첨(user, i) : 꽝(user, i),
       )}
     </div>
   );
 }
 
-function 당첨(user: string) {
-  return <div className='font-bold text-blue-500'>{user} - 당첨</div>;
+function 당첨(user: string, i: number) {
+  return (
+    <div key={i} className='font-bold text-blue-500'>
+      {user} - 당첨
+    </div>
+  );
 }
 
-function 꽝(user: string) {
-  return <div className='font-bold text-red-500'>{user} - 꽝</div>;
+function 꽝(user: string, i: number) {
+  return (
+    <div key={i} className='font-bold text-red-500'>
+      {user} - 꽝
+    </div>
+  );
 }
