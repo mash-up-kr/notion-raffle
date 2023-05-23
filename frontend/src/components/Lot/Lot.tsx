@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import './Lot.css';
 import { useGetLot } from '../../api/query/lotQuery';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTryLot } from '../../api/mutation';
 
 export function Lot() {
+  const navigate = useNavigate();
   const [user, setUser] = useState('익명의 누군가');
   const [result, setResult] = useState('');
   const { uuid, id } = useParams();
@@ -20,15 +21,11 @@ export function Lot() {
   };
 
   return (
-    <div className='container items-center'>
-      <div className='text-2xl font-bold my-3'>{data.title}</div>
+    <div className='container'>
+      <div className='text-2xl font-bold mb-2'>{data.title}</div>
+      <div className='block font-bold'>제비 개수 : {data.maxLotsCnt}</div>
       <div className=''>
-        <div className='block font-bold mb-2'>
-          제비 개수 : {data.maxLotsCnt}
-        </div>
-      </div>
-      <div className=''>
-        <div className='block font-bold mb-2'>당첨 개수 : {data.luckCnt}</div>
+        <div className='block font-bold'>당첨 개수 : {data.luckCnt}</div>
       </div>
       <div className='flex'>
         <input
@@ -40,8 +37,8 @@ export function Lot() {
         />
       </div>
       <button className='btn my-3' onClick={handleDraw}>
-        제비 뽑기
-      </button>
+          제비 뽑기
+        </button>
       {result && <p className='result'>추첨 결과: {result}</p>}
     </div>
   );
