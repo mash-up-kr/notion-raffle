@@ -1,11 +1,11 @@
-import APIBase from "./core";
+import APIBase from './core';
 
 class EmbedService extends APIBase {
   constructor() {
-    super("");
+    super('');
   }
 
-  get() {
+  async get() {
     return this.baseHTTP
       .get(`embed-url`)
       .then(APIBase._handleResponse)

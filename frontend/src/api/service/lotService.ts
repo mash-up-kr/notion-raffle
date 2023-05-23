@@ -1,12 +1,13 @@
-import { CreateLotDto, TryLot } from "../../types/lot";
-import APIBase from "./core";
+import { CreateLotDto, TryLot } from '../../types/lot';
+import APIBase from './core';
+import { ListResponse } from '@notion-raffle/util';
 
 class LotService extends APIBase {
   constructor() {
-    super("");
+    super('');
   }
 
-  create(data: CreateLotDto) {
+  async create(data: CreateLotDto) {
     return this.baseHTTP
       .post(`${data.uuid}/drawlot`, {
         luckCnt: data.luckCnt,
@@ -17,21 +18,21 @@ class LotService extends APIBase {
       .catch(APIBase._handleError);
   }
 
-  getList(uuid: string) {
+  async getList(uuid: string): Promise<ListResponse<any>> {
     return this.baseHTTP
       .get(`${uuid}/drawlot`)
       .then(APIBase._handleResponse)
       .catch(APIBase._handleError);
   }
 
-  get(uuid: string, id: string) {
+  async get(uuid: string, id: string) {
     return this.baseHTTP
       .get(`${uuid}/drawlot/${id}`)
       .then(APIBase._handleResponse)
       .catch(APIBase._handleError);
   }
 
-  try(data: TryLot) {
+  async try(data: TryLot) {
     return this.baseHTTP
       .post(`${data.uuid}/drawlot/${data.id}/try`, { user: data.user })
       .then(APIBase._handleResponse)
