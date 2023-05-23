@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import './Lot.css';
 import { useGetLot } from '../../api/query/lotQuery';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTryLot } from '../../api/mutation';
 
 export function Lot() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState('익명의 누군가');
   const [result, setResult] = useState('');
   const { uuid, id } = useParams();
@@ -36,9 +37,19 @@ export function Lot() {
           className='w-full py-2 px-3 border border-gray-400 rounded shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-400'
         />
       </div>
-      <button className='btn my-3' onClick={handleDraw}>
+      <div>
+        <button className='btn my-1 mx-2' onClick={handleDraw}>
           제비 뽑기
         </button>
+        <button
+          className='btn my-1 mx-2'
+          onClick={() =>
+            navigate(`${location.pathname}/result`, { state: data })
+          }
+        >
+          결과 보기
+        </button>
+      </div>
       {result && <p className='result'>추첨 결과: {result}</p>}
     </div>
   );
