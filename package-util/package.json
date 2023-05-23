@@ -1,5 +1,5 @@
 {
-  "name": "@notion-embeder/util",
+  "name": "@notion-raffle/util",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -20,5 +20,8 @@
   "license": "ISC",
   "dependencies": {
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.1"
   }
 }

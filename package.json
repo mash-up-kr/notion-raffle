@@ -1,12 +1,15 @@
 {
-  "name": "notion-embeder",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "name": "notion-raffle",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start:server": "pnpm --filter backend start",
+        "start:web": "pnpm --filter frontend dev",
+        "build:web": "pnpm --filter frontend build"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
 }
