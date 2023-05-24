@@ -20,6 +20,7 @@
         "test:e2e": "jest --config ./test/jest-e2e.json"
     },
     "dependencies": {
+        "@notion-raffle/dto": "workspace:*",
         "@fastify/static": "^6.10.1",
         "@nestjs/common": "^9.0.0",
         "@nestjs/config": "^2.3.2",

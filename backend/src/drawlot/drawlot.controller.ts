@@ -5,9 +5,10 @@ import {
     FindDrawlotsResDto,
     TryDrawlotReqDto,
     TryDrawlotResDto,
-} from './drawlot.dto';
+} from '@notion-raffle/dto';
 import { DrawlotService } from './drawlot.service';
 import { ExposeOption, FLimit, FSort } from '../types/find-options';
+import { DrawlotDtoMapper } from './drawlot.mapper';
 
 @Controller('api')
 export class DrawlotController {
@@ -27,7 +28,7 @@ export class DrawlotController {
         @Param('id') id: string,
     ): Promise<FindDrawlotResDto> {
         const drawlot = await this.drawlotService.findDrawlotByUuid(id);
-        return FindDrawlotResDto.from(drawlot);
+        return DrawlotDtoMapper.toFindDrawlotResDto(drawlot);
     }
 
     @Get(':uuid/drawlot')
@@ -38,7 +39,7 @@ export class DrawlotController {
     ): Promise<FindDrawlotsResDto> {
         const options = { sort, limit };
         const drawlots = await this.drawlotService.findDrawlotsByUuid(uuid, options);
-        return FindDrawlotsResDto.from(drawlots);
+        return DrawlotDtoMapper.toFindDrawlotsResDto(drawlots);
     }
 
     @Post(':uuid/drawlot/:id/try')
