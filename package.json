@@ -7,7 +7,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start:server": "pnpm --filter backend start",
         "start:web": "pnpm --filter frontend dev",
-        "build:web": "pnpm --filter frontend build"
+        "build:web": "pnpm --filter frontend build",
+        "build:package": "pnpm --filter @notion-raffle/dto build"
     },
     "keywords": [],
     "author": "",
