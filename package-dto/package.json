@@ -1,0 +1,26 @@
+{
+  "name": "@notion-raffle/dto",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "dist/index.js",
+  "module": "dist/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mash-up-kr/notion-embeder.git",
+    "directory": "package-dto"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@notion-raffle/util": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
