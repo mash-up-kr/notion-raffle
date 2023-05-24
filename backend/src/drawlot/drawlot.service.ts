@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateDrawlotDto, CreateDrawlotReqDto, TryDrawlotResultDto } from './drawlot.dto';
+import { CreateDrawlotDto, CreateDrawlotReqDto, TryDrawlotResDto } from './drawlot.dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Drawlot, DrawlotDocument } from './drawlot.schema';
@@ -47,8 +47,8 @@ export class DrawlotService {
         return await this.drawlotModel.findById(id).exec();
     }
 
-    async tryDrawlot(id: string, user: string): Promise<TryDrawlotResultDto> {
-        const tryDrawlotResult: TryDrawlotResultDto = {
+    async tryDrawlot(id: string, user: string): Promise<TryDrawlotResDto> {
+        const tryDrawlotResult: TryDrawlotResDto = {
             isLucky: false,
         };
         const session = await this.drawlotModel.startSession();
@@ -62,8 +62,8 @@ export class DrawlotService {
                     },
                     { returnDocument: 'after' },
                 )
-                .session(session);
-
+                .session(session)
+                .exec();
             if (drawlot.triedUsers.length > drawlot.maxLotsCnt) throw Error();
             const curTryIdx = drawlot.triedUsers.length - 1;
             if (drawlot.luckIdxs.includes(curTryIdx)) tryDrawlotResult.isLucky = true;

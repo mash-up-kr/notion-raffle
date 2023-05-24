@@ -4,7 +4,7 @@ import {
     FindDrawlotResDto,
     FindDrawlotsResDto,
     TryDrawlotReqDto,
-    TryDrawlotResultDto,
+    TryDrawlotResDto,
 } from './drawlot.dto';
 import { DrawlotService } from './drawlot.service';
 import { ExposeOption, FLimit, FSort } from '../types/find-options';
@@ -46,7 +46,7 @@ export class DrawlotController {
         @Param('uuid') uuid: string,
         @Param('id') id: string,
         @Body() tryDrawlotReqDto: TryDrawlotReqDto,
-    ): Promise<TryDrawlotResultDto> {
+    ): Promise<TryDrawlotResDto> {
         return await this.drawlotService.tryDrawlot(id, tryDrawlotReqDto.user);
     }
 }

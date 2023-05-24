@@ -53,6 +53,6 @@ export class TryDrawlotReqDto {
     user: string;
 }
 
-export class TryDrawlotResultDto {
+export class TryDrawlotResDto {
     isLucky: boolean;
 }
