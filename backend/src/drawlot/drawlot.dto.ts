@@ -1,6 +1,5 @@
 import { ListResponse } from '../types/http';
-import { Queried } from '../types/mongo';
-import { Drawlot } from './drawlot.schema';
+import { DrawlotDocument } from './drawlot.schema';
 
 export class CreateDrawlotReqDto {
     title: string;
@@ -12,7 +11,7 @@ export class FindDrawlotsResDto implements ListResponse<FindDrawlotResDto> {
     list: FindDrawlotResDto[];
     count: number;
 
-    static from(drawlots: Queried<Drawlot>[]): FindDrawlotsResDto {
+    static from(drawlots: DrawlotDocument[]): FindDrawlotsResDto {
         return Object.assign(new FindDrawlotResDto(), {
             list: drawlots.map((drawlot) => FindDrawlotResDto.from(drawlot)),
             count: drawlots.length,
@@ -28,7 +27,7 @@ export class FindDrawlotResDto {
     luckIdxs: number[];
     triedUsers: string[];
 
-    static from(drawlot: Queried<Drawlot>): FindDrawlotResDto {
+    static from(drawlot: DrawlotDocument): FindDrawlotResDto {
         return Object.assign(new FindDrawlotResDto(), {
             id: String(drawlot._id),
             title: drawlot.title,
