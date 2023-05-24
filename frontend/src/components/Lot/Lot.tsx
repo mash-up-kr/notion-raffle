@@ -38,11 +38,20 @@ export function Lot() {
         />
       </div>
       <div>
-        <button className='btn my-1 mx-2' onClick={handleDraw}>
+        <button
+          className='btn mt-2 mx-1'
+          onClick={() => navigate(`/embed/${uuid}`)}
+        >
+          처음으로
+        </button>
+        <button
+          className='btn mt-2 mx-1 bg-green-500 border-0'
+          onClick={handleDraw}
+        >
           제비 뽑기
         </button>
         <button
-          className='btn my-1 mx-2'
+          className='btn mt-2 mx-1 bg-emerald-600 border-0'
           onClick={() =>
             navigate(`${location.pathname}/result`, { state: data })
           }
@@ -50,7 +59,9 @@ export function Lot() {
           결과 보기
         </button>
       </div>
-      {result && <p className='result'>추첨 결과: {result}</p>}
+      {result && (
+        <div className='result font-extrabold'>추첨 결과: {result}</div>
+      )}
     </div>
   );
 }
