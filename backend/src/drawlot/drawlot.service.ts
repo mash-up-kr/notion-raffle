@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateDrawlotDto, CreateDrawlotReqDto, TryDrawlotResDto } from './drawlot.dto';
+import { CreateDrawlotDto, CreateDrawlotReqDto, TryDrawlotResDto } from '@notion-raffle/dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Drawlot, DrawlotDocument } from './drawlot.schema';
