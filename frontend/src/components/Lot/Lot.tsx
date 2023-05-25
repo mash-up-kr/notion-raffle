@@ -7,6 +7,7 @@ import { useTryLot } from '../../api/mutation';
 export function Lot() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [lotDisbled, setLotDisabled] = useState(false);
   const [user, setUser] = useState('익명의 누군가');
   const [result, setResult] = useState('');
   const { uuid, id } = useParams();
@@ -18,6 +19,7 @@ export function Lot() {
   const handleDraw = async () => {
     const res = await tryLot();
     const resultText = res.isLucky ? '당첨' : '꽝';
+    setLotDisabled(true);
     setResult(resultText);
   };
 
@@ -45,6 +47,7 @@ export function Lot() {
           처음으로
         </button>
         <button
+          disabled={lotDisbled}
           className='btn mt-2 mx-1 bg-green-500 border-0'
           onClick={handleDraw}
         >
